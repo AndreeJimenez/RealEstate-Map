@@ -1,0 +1,24 @@
+body {
+  background-color: #f5f5f5;
+}
+img {
+  width: 80%;
+}
+a {
+  color: #fff!important;
+}
+.logged-in,
+.logged-out {
+  display: none;
+}
+.navbar {
+  background: linear-gradient(
+    225.52deg,
+    #271a00 0.45%,
+    rgba(0, 0, 0, 0.982162) 45.25%
+  );
+}
+.navbar i {
+  color: #f4ac31;
+  margin-right: 5px;
+}
