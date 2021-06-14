@@ -1,6 +1,6 @@
-const listaloggedout = document.querySelectorAll(".logged-out");
-const listaloggedin = document.querySelectorAll(".logged-in");
-const datosdelacuenta = document.querySelector(".datosdelacuenta");
+const listloggedout = document.querySelectorAll(".logged-out");
+const listloggedin = document.querySelectorAll(".logged-in");
+const acountData = document.querySelector(".acountData");
 
 const configuraMenu = (user) => {
   if (user) {
@@ -9,49 +9,138 @@ const configuraMenu = (user) => {
       .get()
       .then((doc) => {
         const html = `
-                <p>Nombre: ${doc.data().nombre}</p>
-                <p>Correo: ${user.email}</p>
-                <p>Teléfono: ${doc.data().telefono}</p>
-                <p>Dirección: ${doc.data().direccion}</p>
+                <p>Name: ${doc.data().nombre}</p>
+                <p>Email: ${user.email}</p>
+                <p>Phone: ${doc.data().telefono}</p>
+                <p>Location: ${doc.data().direccion}</p>
             `;
-        datosdelacuenta.innerHTML = html;
+        acountData.innerHTML = html;
       });
 
-    listaloggedin.forEach((item) => (item.style.display = "block"));
-    listaloggedout.forEach((item) => (item.style.display = "none"));
+    listloggedin.forEach((item) => (item.style.display = "block"));
+    listloggedout.forEach((item) => (item.style.display = "none"));
   } else {
-    datosdelacuenta.innerHTML = "";
-    listaloggedin.forEach((item) => (item.style.display = "none"));
-    listaloggedout.forEach((item) => (item.style.display = "block"));
+    acountData.innerHTML = "";
+    listloggedin.forEach((item) => (item.style.display = "none"));
+    listloggedout.forEach((item) => (item.style.display = "block"));
   }
 };
 
-const listadeplatillos = document.getElementById("listadeplatillos");
+const propertiesList = document.getElementById("propertiesList");
 
-const obtienePlatillos = (data) => {
+const getProperties = (data) => {
   if (data.length) {
     let html = "";
 
+    var btnroadmap = document.getElementById("btnroadmap");
+    var btnsatelite = document.getElementById("btnsatellite");
+    var btnhybrid = document.getElementById("btnhybrid");
+    var btnterrain = document.getElementById("btnterrain");
+
+    var coordenadas = {
+      lat: 23.2401797,
+      lng: -106.4331511,
+    };
+
+    var localidades = [];
+    // data.forEach((doc) => {
+    //   localidades.push({lat: doc.data().Location.Latitud, lng: doc.data().Location.Longitud})
+    // });
+
+    function MapInit() {
+      fetch("properties.json").then(function (response) {
+        response.json().then(function (data) {
+          const map = new google.maps.Map(document.getElementById("map"), {
+            center: coordenadas,
+            zoom: 3,
+          });
+
+          data.forEach((markerFetch) => {
+            var information =
+              "<strong>Name: </strong>" +
+              markerFetch.name +
+              "| <strong>casos: </strong> " +
+              markerFetch.category;
+
+            var infoWindow = new google.maps.InfoWindow({
+              content: information,
+            });
+
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(
+                markerFetch.location.latitude,
+                markerFetch.location.longitude
+              ),
+              title: markerFetch.name + registro.category,
+            });
+
+            marker.addListener("click", function () {
+              infoWindow.open(map, marker);
+            });
+          });
+        });
+      });
+
+      var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      var marcadores = [];
+      var cuenta = 1;
+
+      localidades.forEach((localidad) => {
+        console.log(localidad);
+
+        let marcador = new google.maps.Marker({
+          map: map,
+          position: localidad,
+          label: labels[cuenta % labels.length],
+        });
+
+        marcadores.push(marcador);
+        cuenta++;
+      });
+
+      var markerCluster = new MarkerClusterer(map, marcadores, {
+        imagePath:
+          "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+        gridSize: 60,
+        maxZoom: 10,
+      });
+
+      btnroadmap.addEventListener("click", function () {
+        map.setMapTypeId("roadmap");
+      });
+
+      btnsatelite.addEventListener("click", function () {
+        map.setMapTypeId("satellite");
+      });
+
+      btnhybrid.addEventListener("click", function () {
+        map.setMapTypeId("hybrid");
+      });
+
+      btnterrain.addEventListener("click", function () {
+        map.setMapTypeId("terrain");
+      });
+    }
+
     data.forEach((doc) => {
-      const platillo = doc.data();
-      console.log(platillo);
+      const properties = doc.data();
+      console.log(properties);
       const columna = `
-                <div class="col-12 col-md-4">
-                    <img src="imagenes/${platillo.imagen}" alt="${platillo.nombre}">
-                    <p>${platillo.nombre}</p>
-                    <p class="text-danger">$${platillo.precio}.00 pesos</p>
-                  
-                        <button class="btn btn-primary">Pagar Ahora</button>
-                    </a>
-                </div>
-            `;
+        <div class="col-12 col-md-4">
+          <img src="${properties.Image}" alt="${properties.Name}">
+          <p class="propertyName">${properties.Name}</p>
+          <p class="propertyStatus">${properties.Category} / ${properties.Status}</p>
+        </div>
+      `;
 
       html += columna;
     });
 
-    listadeplatillos.innerHTML = html;
+    propertiesList.innerHTML = html;
   } else {
-    listadeplatillos.innerHTML =
-      '<p class="text-center">Ingrese con sus claves para ver los platillos.</p>';
+    propertiesList.innerHTML =
+      '<p class="alternativeText">Please Log in to see the properties.</p>';
+    ('<img class="cityscape" src="./images/cityLandscape.svg"/>');
   }
 };

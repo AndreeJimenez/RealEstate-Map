@@ -122,7 +122,7 @@ entrarGoogle = () => {
                 <p>Correo: ${user.email}</p>
                 <img src="${user.photoURL}" width="50px">
             `;
-      datosdelacuenta.innerHTML = html;
+      acountData.innerHTML = html;
 
       $("#ingresarmodal").modal("hide");
       formaingresar.reset();

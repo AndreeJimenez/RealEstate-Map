@@ -5,7 +5,7 @@ img {
   width: 80%;
 }
 a {
-  color: #fff!important;
+  color: #fff !important;
 }
 .logged-in,
 .logged-out {
@@ -21,4 +21,24 @@ a {
 .navbar i {
   color: #f4ac31;
   margin-right: 5px;
+}
+
+#mapa {
+  width: 100%;
+  height: 60vh;
+}
+
+.propertyName {
+  font-weight: bold;
+}
+
+.alternativeText {
+  font-size: 24px;
+  margin: 50 auto;
+}
+
+.cityscape {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

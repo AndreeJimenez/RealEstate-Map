@@ -19,12 +19,14 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#"><i class="fab fa-accusoft"></i>RealEstate</a>
+      <a class="navbar-brand" href="#"
+        ><i class="fab fa-accusoft"></i>RealEstate</a
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -267,7 +269,7 @@
           </div>
           <div class="modal-body">
             <div class="row m-2">
-              <div class="col-12 datosdelacuenta">
+              <div class="col-12 acountData">
                 Aquí va la info de su cuenta
               </div>
             </div>
@@ -285,8 +287,31 @@
       </div>
     </div>
 
+    <div class="container-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div id="mapa"></div>
+          </div>
+        </div>
+        <div class="row text-center p-2">
+          <div class="col-3">
+            <button class="btn btn-primary" id="btnroadmap">Roadmap</button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-warning" id="btnsatellite">Satellite</button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-danger" id="btnhybrid">Hybrid</button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-success" id="btnterrain">Terrain</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container">
-      <div class="row text-center" id="listadeplatillos"></div>
+      <div class="row text-center" id="propertiesList"></div>
     </div>
 
     <!-- Bootstrap -->
@@ -304,6 +329,13 @@
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
+    ></script>
+
+    <!-- Google Maps -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAv-m46ebIV9fqkE2fIBGeWunmGmBm2R24&callback=iniciaMapa"
+      async
+      defer
     ></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
