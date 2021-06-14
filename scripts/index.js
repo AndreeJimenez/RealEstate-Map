@@ -48,7 +48,7 @@ const getProperties = (data) => {
     //   localidades.push({lat: doc.data().Location.Latitud, lng: doc.data().Location.Longitud})
     // });
 
-    function MapInit() {
+    function iniciaMapa() {
       fetch("properties.json").then(function (response) {
         response.json().then(function (data) {
           const map = new google.maps.Map(document.getElementById("map"), {
@@ -155,8 +155,8 @@ const getProperties = (data) => {
 
     propertiesList.innerHTML = html;
   } else {
-    propertiesList.innerHTML =
-      '<p class="alternativeText">Please Log in to see the properties.</p>';
-    ('<img class="cityscape" src="./images/cityLandscape.svg"/>');
+    propertiesList.innerHTML =`
+      <p class="alternativeText">Please Log in to see the properties.</p>
+      <img class="cityscape" src="./images/cityLandscape.svg"/>`
   }
 };
