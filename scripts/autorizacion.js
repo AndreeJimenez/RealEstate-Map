@@ -3,7 +3,7 @@ auth.onAuthStateChanged((user) => {
     console.log("Usuario entró");
     db.collection("platillos").onSnapshot(
       (snapshot) => {
-        obtienePlatillos(snapshot.docs);
+        getProperties(snapshot.docs);
         configuraMenu(user);
       },
       (err) => {
@@ -22,7 +22,7 @@ auth.onAuthStateChanged((user) => {
     console.log(name, email, photoUrl, emailVerified, uid);
   } else {
     console.log("Usuario salió");
-    obtienePlatillos([]);
+    getProperties([]);
     configuraMenu();
   }
 });
@@ -61,7 +61,7 @@ const salir = document.getElementById("salir");
 salir.addEventListener("click", (e) => {
   e.preventDefault();
   auth.signOut().then(() => {
-    alert("El usuario ha salido del sistema");
+    alert("User Log out");
   });
 });
 
@@ -70,16 +70,16 @@ function mensajeError(codigo) {
 
   switch (codigo) {
     case "auth/wrong-password":
-      mensaje = "Su contraseña no es correcta";
+      mensaje = "Wrong Password";
       break;
     case "auth/user-not-found":
-      mensaje = "El usuario no existe o el correo no esta registrado";
+      mensaje = "This user or email is not defined";
       break;
     case "auth/weak-password":
-      mensaje = "Contraseña débil debe tener al menos 6 caracteres";
+      mensaje = "Weak password, It need to have at least 6 caracters";
       break;
     default:
-      mensaje = "Ocurrió un error al ingresar con este usuario";
+      mensaje = "Log in error";
   }
   return mensaje;
 }
@@ -118,8 +118,8 @@ entrarGoogle = () => {
 
       console.log(user);
       const html = `
-                <p>Nombre: ${user.displayName}</p>
-                <p>Correo: ${user.email}</p>
+                <p>Name: ${user.displayName}</p>
+                <p>Email: ${user.email}</p>
                 <img src="${user.photoURL}" width="50px">
             `;
       acountData.innerHTML = html;
