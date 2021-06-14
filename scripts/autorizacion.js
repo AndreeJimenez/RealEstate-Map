@@ -1,7 +1,7 @@
 auth.onAuthStateChanged((user) => {
   if (user) {
     console.log("Usuario entró");
-    db.collection("platillos").onSnapshot(
+    db.collection("properties").onSnapshot(
       (snapshot) => {
         getProperties(snapshot.docs);
         configuraMenu(user);

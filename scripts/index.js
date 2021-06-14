@@ -27,6 +27,7 @@ const configuraMenu = (user) => {
 };
 
 const propertiesList = document.getElementById("propertiesList");
+const mapControls = document.getElementById("mapControls");
 
 const getProperties = (data) => {
   if (data.length) {
@@ -105,6 +106,21 @@ const getProperties = (data) => {
         gridSize: 60,
         maxZoom: 10,
       });
+
+      mapControls.innerHTML = `
+        <div class="col-3">
+          <button class="btn btn-primary" id="btnroadmap">Roadmap</button>
+        </div>
+        <div class="col-3">
+          <button class="btn btn-warning" id="btnsatellite">Satellite</button>
+        </div>
+        <div class="col-3">
+          <button class="btn btn-danger" id="btnhybrid">Hybrid</button>
+        </div>
+        <div class="col-3">
+          <button class="btn btn-success" id="btnterrain">Terrain</button>
+        </div>
+      `;
 
       btnroadmap.addEventListener("click", function () {
         map.setMapTypeId("roadmap");
