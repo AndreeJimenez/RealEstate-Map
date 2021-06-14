@@ -27,7 +27,7 @@ const configuraMenu = (user) => {
 };
 
 const propertiesList = document.getElementById("propertiesList");
-const mapControls = document.getElementById("mapControls");
+const mapControls = document.querySelector(".mapControls");
 
 const getProperties = (data) => {
   if (data.length) {
@@ -107,21 +107,6 @@ const getProperties = (data) => {
         maxZoom: 10,
       });
 
-      mapControls.innerHTML = `
-        <div class="col-3">
-          <button class="btn btn-primary" id="btnroadmap">Roadmap</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-warning" id="btnsatellite">Satellite</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-danger" id="btnhybrid">Hybrid</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-success" id="btnterrain">Terrain</button>
-        </div>
-      `;
-
       btnroadmap.addEventListener("click", function () {
         map.setMapTypeId("roadmap");
       });
@@ -152,9 +137,15 @@ const getProperties = (data) => {
 
       html += columna;
     });
+    
+    body.classList.remove('overflowHidden');
+    mapControls.classList.remove('displayNone');
 
     propertiesList.innerHTML = html;
   } else {
+    body.classList.add('overflowHidden');
+    mapControls.classList.add('displayNone');
+
     propertiesList.innerHTML =`
       <p class="alternativeText">Please Log in to see the properties.</p>
       <img class="cityscape" src="./images/cityLandscape.svg"/>`

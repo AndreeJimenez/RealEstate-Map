@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
 
-  <body>
+  <body id="body">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#"
         ><i class="fab fa-accusoft"></i>RealEstate</a
@@ -269,9 +269,7 @@
           </div>
           <div class="modal-body">
             <div class="row m-2">
-              <div class="col-12 acountData">
-                Aquí va la info de su cuenta
-              </div>
+              <div class="col-12 acountData">Aquí va la info de su cuenta</div>
             </div>
           </div>
           <div class="modal-footer">
@@ -295,6 +293,18 @@
           </div>
         </div>
         <div class="row text-center p-2 mapControls">
+          <div class="col-3">
+            <button class="btn btn-primary" id="btnroadmap">Roadmap</button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-warning" id="btnsatellite">Satellite</button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-danger" id="btnhybrid">Hybrid</button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-success" id="btnterrain">Terrain</button>
+          </div>
         </div>
       </div>
     </div>

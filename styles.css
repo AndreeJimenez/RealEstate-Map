@@ -33,12 +33,28 @@ a {
 }
 
 .alternativeText {
-  font-size: 24px;
-  margin: 50 auto;
+  font-size: 36px;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
 }
 
 .cityscape {
   position: absolute;
-  bottom: 0;
-  width: 100%;
+  bottom: -30px;
+  left: -30px;
+  width: 104%;
+}
+
+.mapControls {
+  margin: 5px 0 40px 0;
+}
+
+.overflowHidden {
+  overflow: hidden;
+}
+.displayNone {
+  display: none;
 }
