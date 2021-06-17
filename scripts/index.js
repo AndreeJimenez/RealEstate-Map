@@ -42,12 +42,13 @@ function iniciaMapa() {
 
   var localidades = [];
 
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: coordenadas,
+    zoom: 3,
+  });
+  
   fetch("properties.json").then(function (response) {
     response.json().then(function (data) {
-      const map = new google.maps.Map(document.getElementById("map"), {
-        center: coordenadas,
-        zoom: 3,
-      });
 
       data.forEach((markerFetch) => {
         var information =
