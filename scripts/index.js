@@ -42,10 +42,18 @@ function iniciaMapa() {
 
   var localidades = [];
 
-  const map = new google.maps.Map(document.getElementById("map"), {
+  var map = new google.maps.Map(document.getElementById("mapa"), {
     center: coordenadas,
-    zoom: 3,
+    zoom: 13,
   });
+
+  var markerIcon = new google.maps.MarkerImage(
+    "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.vexels.com%2Fmedia%2Fusers%2F3%2F142675%2Fisolated%2Fpreview%2F84e468a8fff79b66406ef13d3b8653e2-house-location-marker-icon-by-vexels.png&f=1&nofb=1",
+    null /* size is determined at runtime */,
+    null /* origin is 0,0 */,
+    null /* anchor is bottom center of the scaled image */,
+    new google.maps.Size(57, 65)
+  );
   
   fetch("properties.json").then(function (response) {
     response.json().then(function (data) {
@@ -54,7 +62,7 @@ function iniciaMapa() {
         var information =
           "<strong>Name: </strong>" +
           markerFetch.name +
-          "| <strong>casos: </strong> " +
+          " | <strong>Category: </strong> " +
           markerFetch.category;
 
         var infoWindow = new google.maps.InfoWindow({
@@ -67,7 +75,8 @@ function iniciaMapa() {
             markerFetch.location.latitude,
             markerFetch.location.longitude
           ),
-          title: markerFetch.name + registro.category,
+          title: markerFetch.name + markerFetch.category,
+          icon: markerIcon
         });
 
         marker.addListener("click", function () {
@@ -88,6 +97,7 @@ function iniciaMapa() {
       map: map,
       position: localidad,
       label: labels[cuenta % labels.length],
+      icon: markerIcon
     });
 
     marcadores.push(marcador);
