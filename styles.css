@@ -2,10 +2,15 @@ body {
   background-color: #f5f5f5;
 }
 img {
-  width: 80%;
+  width: 100%;
+  border-radius: 25px 25px 0 0;
+  margin-bottom: 10px;
 }
 a {
   color: #fff !important;
+}
+p {
+  margin: 0;
 }
 .logged-in,
 .logged-out {
@@ -31,12 +36,16 @@ a {
 
 .propertyName {
   font-weight: bold;
+  margin-bottom: .5rem;
+}
+.propertyStatus {
+  margin-bottom: 1.5rem;
 }
 
 .alternativeText {
   font-size: 36px;
   position: absolute;
-  top: 100px;
+  top: 160px;
   left: 50%;
   transform: translateX(-50%);
   font-weight: bold;
@@ -44,9 +53,9 @@ a {
 
 .cityscape {
   position: absolute;
-  bottom: -30px;
+  bottom: -40px;
   left: -30px;
-  width: 104%;
+  width: 110%;
 }
 
 .mapControls {
@@ -59,3 +68,46 @@ a {
 .displayNone {
   display: none;
 }
+
+#propertiesList {
+  justify-content: space-between;
+  max-width: 95%;
+  margin: 0 auto;
+}
+.cardProperty {
+  background-color: #fff;
+  margin-bottom: 30px;
+  border-radius: 25px;
+  max-width: 30% !important;
+  padding: 0;
+  transition: .5s ease-in-out all;
+}
+@media (min-width: 600px) {
+  .cardProperty {
+    max-width: 30% !important;
+  }
+}
+.cardProperty:hover {
+  transform:scale(1.1);
+}
+
+.mapTypeButton {
+  background-color: #271a00;
+  color: #fff;
+  border: 1px solid #f4ac31;
+  width: 100%;
+  margin-bottom: 5px;
+}
+.mapTypeButton:hover {
+  background-color: #f4ac31;
+  color: #fff;
+  border: 1px solid #271a00;
+}
+
+.navbar-light .navbar-toggler {
+  color: rgb(255,255,255);
+}
+.navbar-light .navbar-toggler-icon {
+  filter: invert(1);
+}
+

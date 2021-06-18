@@ -28,6 +28,7 @@ const configuraMenu = (user) => {
 
 const propertiesList = document.getElementById("propertiesList");
 const mapControls = document.querySelector(".mapControls");
+const mapView = document.querySelector("#mapa");
 
 function iniciaMapa() {
   var btnroadmap = document.getElementById("btnroadmap");
@@ -136,7 +137,7 @@ const getProperties = (data) => {
       const properties = doc.data();
       console.log(properties);
       const columna = `
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4 cardProperty">
           <img src="${properties.Image}" alt="${properties.Name}">
           <p class="propertyName">${properties.Name}</p>
           <p class="propertyStatus">${properties.Category} / ${properties.Status}</p>
@@ -148,11 +149,13 @@ const getProperties = (data) => {
 
     body.classList.remove("overflowHidden");
     mapControls.classList.remove("displayNone");
+    mapView.classList.remove("displayNone");
 
     propertiesList.innerHTML = html;
   } else {
     body.classList.add("overflowHidden");
     mapControls.classList.add("displayNone");
+    mapView.classList.add("displayNone");
 
     propertiesList.innerHTML = `
       <p class="alternativeText">Please Log in to see the properties.</p>
