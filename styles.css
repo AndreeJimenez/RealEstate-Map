@@ -78,7 +78,7 @@ p {
   background-color: #fff;
   margin-bottom: 30px;
   border-radius: 25px;
-  max-width: 30% !important;
+  max-width: 100% !important;
   padding: 0;
   transition: .5s ease-in-out all;
 }
